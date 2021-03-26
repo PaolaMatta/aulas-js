@@ -1,0 +1,7 @@
+1) Cite as diferenças entre let e const
+2) Declare variáveis que tenham relação com a vida de vocês ou a natureza:
+  a) 5 strings
+  b) 5 booleanos
+  c) 5 números
+
+Durante a declaração, leve em conta se é um valor constante ou não. Use a declaração let e const de acordo.
