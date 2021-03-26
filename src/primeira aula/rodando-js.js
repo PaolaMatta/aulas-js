@@ -1,0 +1,1 @@
+console.log("Olá Mundo! Estou dentro de um arquivo .js");
