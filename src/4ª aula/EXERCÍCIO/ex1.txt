@@ -1,0 +1,2 @@
+Usando um loop while, escreva um algoritmo que, dado um número "aleatório", verifique se esse número se encontra na sequência de
+fibonacci. 
