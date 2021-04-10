@@ -1,0 +1,39 @@
+
+numeroAnalisado = 20;
+numeroAnterior1 = 1;
+numeroAnterior2 = 1;
+numeroAtual     = 2;
+
+LOOP:
+1º LAÇO: 2 < 20 === true
+    imprime tela -> 2
+    numeroAnterior1 = 1
+    numeroAnterior2 = 2
+    numeroAtual = 3
+2º LAÇO: 3 < 20 === true
+    imprime tela -> 3
+    numeroAnterior1 = 2
+    numeroAnterior2 = 3
+    numeroAtual = 5
+3º LAÇO: 5 < 20 === true
+    imprime tela -> 5
+    numeroAnterior1 = 3
+    numeroAnterior2 = 5
+    numeroAtual = 8
+4º LAÇO: 8 < 20 === true
+    imprime tela -> 8
+    numeroAnterior1 = 5
+    numeroAnterior2 = 8
+    numeroAtual = 13
+5º LAÇO: 13 < 20 === true
+    imprime tela -> 13
+    numeroAnterior1 = 8
+    numeroAnterior2 = 13
+    numeroAtual = 21
+6º LAÇO: 21 < 20 === false
+SAI DO LOOP
+
+imprime tela -> atual: 21
+if (21 === 20) false
+else
+    imprime tela -> 'O número', numeroAnalisado, 'está dentro do conjunto de numeros que compõe a sequência de fibonãocci'
