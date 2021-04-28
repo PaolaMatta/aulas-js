@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação</title>
+</head>
+<body>
+    <h1>Votação</h1>
+    <select id="select-1">
+      <option value="Segunda-Feira">Segunda-Feira</option>
+      <option value="Terça-Feira">Terça-Feira</option>
+      <option value="Quarta-Feira">Quarta-Feira</option>
+      <option value="Quinta-Feira">Quinta-Feira</option>
+      <option value="Sexta-Feira">Sexta-Feira</option>
+    </select>
+    <select id="select-2">
+      <option value="Segunda-Feira">Segunda-Feira</option>
+      <option value="Terça-Feira">Terça-Feira</option>
+      <option value="Quarta-Feira">Quarta-Feira</option>
+      <option value="Quinta-Feira">Quinta-Feira</option>
+      <option value="Sexta-Feira">Sexta-Feira</option>
+    </select>
+    <input type = "button" id="btn-votar" value = "Votar" onclick = "votar()"> 
+
+    <progress id="votos-progress" value="0" max="10"> 0% </progress>
+
+    <div id="res" style="display: none">
+    </div>
+
+    <script>
+      const MAX_NUM_VOTOS = 10;
+      const diasVotados = { segunda: 0, terca: 0, quarta: 0, quinta: 0, sexta: 0 };
+      let numVotos = 0;
+      function votar() {
+        let tn1 = document.getElementById("select-1");
+        let tn2 = document.getElementById("select-2");
+        let n1 = tn1.value;
+        let n2 = tn2.value;
+        
+        switch(n1) {
+          case "Segunda-Feira":
+            diasVotados.segunda += 1;
+            break;
+          case "Terça-Feira":
+            diasVotados.terca += 1;
+            break;
+          case "Quarta-Feira":
+            diasVotados.quarta += 1;
+            break;
+          case "Quinta-Feira":
+            diasVotados.quinta += 1;
+            break;
+          case "Sexta-Feira":
+            diasVotados.sexta += 1;
+            break;
+        }
+
+        switch(n2) {
+          case "Segunda-Feira":
+            diasVotados.segunda += 1;
+            break;
+          case "Terça-Feira":
+            diasVotados.terca += 1;
+            break;
+          case "Quarta-Feira":
+            diasVotados.quarta += 1;
+            break;
+          case "Quinta-Feira":
+            diasVotados.quinta += 1;
+            break;
+          case "Sexta-Feira":
+            diasVotados.sexta += 1;
+            break;
+        }
+
+        numVotos++;
+        document.getElementById("votos-progress").value = numVotos;
+
+        if (numVotos >= 10) {
+          document.getElementById("btn-votar").setAttribute("disabled", true);
+          showResults();
+        }
+      }
+
+      function showResults() {
+        let res = document.getElementById("res");
+        res.style.display = "block";
+        listaDiasVotados = calculaDiaMaisVotado();
+        const diasEmpatados = listaDiasVotados.filter( (dia) => {
+          return dia.votos === listaDiasVotados[0].votos;
+        });
+
+        const resultadoEl = document.createElement("p");
+        resultadoEl.innerHTML = diasEmpatados.length === 1 ? 
+          `O dia vencedor foi: ${diasEmpatados[0].nome}` : 
+          `Houve um empate entre os dias: ${diasEmpatados.map(dia => dia.nome).join(', ')}` 
+          
+        const rankingEl = document.createElement("ol");
+        const rankingElFirst = document.createElement("li")
+        rankingElFirst.innerHTML = `${listaDiasVotados[0].nome} - ${listaDiasVotados[0].votos} votos.`;
+        const rankingElSecond = document.createElement("li")
+        rankingElSecond.innerHTML = `${listaDiasVotados[1].nome} - ${listaDiasVotados[1].votos} votos.`;
+        const rankingElThird = document.createElement("li")
+        rankingElThird.innerHTML = `${listaDiasVotados[2].nome} - ${listaDiasVotados[2].votos} votos.`;
+        const rankingElFourth = document.createElement("li")
+        rankingElFourth.innerHTML = `${listaDiasVotados[3].nome} - ${listaDiasVotados[3].votos} votos.`;
+        const rankingElFifth = document.createElement("li")
+        rankingElFifth.innerHTML = `${listaDiasVotados[4].nome} - ${listaDiasVotados[4].votos} votos.`;
+
+        rankingEl.appendChild(rankingElFirst);
+        rankingEl.appendChild(rankingElSecond);
+        rankingEl.appendChild(rankingElThird);
+        rankingEl.appendChild(rankingElFourth);
+        rankingEl.appendChild(rankingElFifth);
+        
+        res.appendChild(resultadoEl);
+        res.appendChild(rankingEl);
+      }
+
+      function calculaDiaMaisVotado() {
+        const listaDiasVotados = [
+         { nome:"Segunda-Feira", votos: diasVotados.segunda },
+         { nome:"Terça-Feira", votos: diasVotados.terca },
+         { nome:"Quarta-Feira", votos: diasVotados.quarta },
+         { nome:"Quinta-Feira", votos: diasVotados.quinta },
+         { nome:"Sexta-Feira", votos: diasVotados.sexta }
+        ];
+        listaDiasVotados.sort( (a, b) => {
+          return b.votos - a.votos;
+        });
+        return listaDiasVotados;
+      }
+
+    </script>
+
+</body>
+</html>
